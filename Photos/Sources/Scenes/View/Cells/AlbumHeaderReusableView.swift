@@ -74,9 +74,9 @@ class AlbumHeaderReusableView: UICollectionReusableView {
 
     // MARK: - Configuration
 
-    func configure(header: Header) {
-        self.title.text = header.title
-        self.subtitleButton.setTitle(header.subtitle, for: .normal)
+    func configure(header: Header?) {
+        self.title.text = header?.title
+        self.subtitleButton.setTitle(header?.subtitle, for: .normal)
     }
 
     override func prepareForReuse() {

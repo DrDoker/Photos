@@ -9,7 +9,7 @@ import UIKit
 
 class AlbumsController: UIViewController {
 
-    private var model: [[PhotoAlbum]]?
+    private var model: [PhotosSections]?
 
     private var albumsView: AlbumsView? {
         guard isViewLoaded else { return nil }
@@ -20,7 +20,7 @@ class AlbumsController: UIViewController {
         super.viewDidLoad()
         
         view = AlbumsView()
-        model = PhotoAlbum.albums
+        model = PhotosSections.albumSections
         setupNavigationBar()
 
         albumsView?.photoCollection.dataSource = self
@@ -47,23 +47,25 @@ extension AlbumsController: UICollectionViewDataSource, UICollectionViewDelegate
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return model?[section].count ?? 0
+        return model?[section].photoAlbom.count ?? 0
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        switch indexPath.section {
-        case 0:
+        guard let photosSection = model?[indexPath.section] else { return UICollectionViewCell() }
+
+        switch photosSection.type {
+        case .firstSection:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FirstSectionCell.identifier, for: indexPath) as? FirstSectionCell
-            cell?.configure(album: PhotoAlbum.albums[indexPath.section][indexPath.item])
+            cell?.configure(album: photosSection.photoAlbom[indexPath.item])
             cell?.numberTitle.text = String(Int.random(in: 35...90))
             return cell ?? UICollectionViewCell()
-        case 1:
+        case .secondSection:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SecondSectionCell.identifier, for: indexPath) as? SecondSectionCell
-            cell?.configure(album: PhotoAlbum.albums[indexPath.section][indexPath.item])
+            cell?.configure(album: photosSection.photoAlbom[indexPath.item])
             return cell ?? UICollectionViewCell()
-        case 2, 3:
+        case .thirdAndFourthSectionCell:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ThirdAndFourthSectionCell.identifier, for: indexPath) as? ThirdAndFourthSectionCell
-            cell?.configure(album: PhotoAlbum.albums[indexPath.section][indexPath.item])
+            cell?.configure(album: photosSection.photoAlbom[indexPath.item])
             cell?.numberTitle.text = String(Int.random(in: 80...120))
             if (indexPath.section == 2 && indexPath.item == 6) || (indexPath.section == 3 && indexPath.item == 2) {
                 cell?.bottomView.backgroundColor = UIColor.clear
@@ -71,21 +73,17 @@ extension AlbumsController: UICollectionViewDataSource, UICollectionViewDelegate
                 cell?.bottomView.backgroundColor = UIColor.systemGray5
             }
             return cell ?? UICollectionViewCell()
-        default:
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath)
-            cell.backgroundColor = .systemYellow
-            return cell
         }
     }
 
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: AlbumHeaderReusableView.identifier, for: indexPath) as? AlbumHeaderReusableView
-        header?.configure(header: Header.headers[indexPath.section])
+        header?.configure(header: model?[indexPath.section].header)
         return header ?? AlbumHeaderReusableView()
     }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         collectionView.deselectItem(at: indexPath, animated: true)
-        print("Нажата ячейка - \(PhotoAlbum.albums[indexPath.section][indexPath.item].title)")
+       // print("Нажата ячейка - \(PhotoAlbum.albums[indexPath.section][indexPath.item].title)")
     }
 }
