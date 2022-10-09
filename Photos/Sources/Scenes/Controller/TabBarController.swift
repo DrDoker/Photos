@@ -24,18 +24,18 @@ class TabBarController: UITabBarController {
         viewControllers = [
             createNavController(for: LibraryController(),
                                 title: "Медиатека",
-                                image: UIImage(systemName: "photo.on.rectangle"),
+                                image: UIImage(systemName: "photo.on.rectangle.fill"),
                                 selectedImage: UIImage(systemName: "photo.fill.on.rectangle.fill")),
 
             createNavController(for: ForYouController(),
                                 title: "Для Вас",
-                                image: UIImage(systemName: "heart.text.square"),
+                                image: UIImage(systemName: "heart.text.square.fill"),
                                 selectedImage: UIImage(systemName: "heart.text.square.fill")),
 
             createNavController(for: AlbumsController(),
                                 title: "Альбомы",
-                                image: UIImage(systemName: "folder"),
-                                selectedImage: UIImage(systemName: "folder.fill")),
+                                image: UIImage(systemName: "rectangle.stack.fill"),
+                                selectedImage: UIImage(systemName: "rectangle.stack.fill")),
 
             createNavController(for: SearchController(),
                                 title: "Поиск",
