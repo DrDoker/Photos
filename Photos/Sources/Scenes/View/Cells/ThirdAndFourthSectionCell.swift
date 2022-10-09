@@ -19,11 +19,11 @@ class ThirdAndFourthSectionCell: UICollectionViewCell {
         return icon
     }()
 
-    private lazy var fileTypeTitle: UILabel = {
-        let fileTypeTitle = UILabel()
-        fileTypeTitle.textColor = .systemBlue
-        fileTypeTitle.font = UIFont.systemFont(ofSize: 20)
-        return fileTypeTitle
+    private lazy var typeTitle: UILabel = {
+        let typeTitle = UILabel()
+        typeTitle.textColor = .systemBlue
+        typeTitle.font = UIFont.systemFont(ofSize: 20)
+        return typeTitle
     }()
 
     lazy var numberTitle: UILabel = {
@@ -70,7 +70,7 @@ class ThirdAndFourthSectionCell: UICollectionViewCell {
 
     func setupHierarchy() {
         contentView.addSubview(icon)
-        contentView.addSubview(fileTypeTitle)
+        contentView.addSubview(typeTitle)
         contentView.addSubview(numberTitle)
         contentView.addSubview(detailIcon)
         contentView.addSubview(bottomView)
@@ -82,7 +82,7 @@ class ThirdAndFourthSectionCell: UICollectionViewCell {
             make.left.equalTo(self)
         }
 
-        fileTypeTitle.snp.makeConstraints { make in
+        typeTitle.snp.makeConstraints { make in
             make.centerY.equalTo(self)
             make.left.equalTo(contentView.snp.left).offset(30)
         }
@@ -106,14 +106,17 @@ class ThirdAndFourthSectionCell: UICollectionViewCell {
 
     // MARK: - Configuration
 
-    func configure(album: PhotoAlbum?) {
-        self.fileTypeTitle.text = album?.title
-        self.icon.image = UIImage(systemName: album?.image ?? "")
+    func configureIcon(_ imageName: String?) {
+        self.icon.image = UIImage(systemName: imageName ?? "")
+    }
+
+    func configureTitle(_ title: String?) {
+        self.typeTitle.text = title
     }
 
     override func prepareForReuse() {
         super.prepareForReuse()
-        fileTypeTitle.text = nil
+        typeTitle.text = nil
         icon.image = nil
     }
 }

@@ -56,34 +56,46 @@ extension AlbumsController: UICollectionViewDataSource, UICollectionViewDelegate
         switch photosSection.type {
         case .firstSection:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FirstSectionCell.identifier, for: indexPath) as? FirstSectionCell
-            cell?.configure(album: photosSection.photoAlbom[indexPath.item])
-            cell?.numberTitle.text = String(Int.random(in: 35...90))
-            return cell ?? UICollectionViewCell()
+            guard let cell = cell else { return UICollectionViewCell()}
+            let albumModel = photosSection.photoAlbom[indexPath.item]
+            cell.configureAlbumTitle(albumModel.title)
+            cell.configureImage(albumModel.image)
+            cell.numberTitle.text = String(Int.random(in: 35...90))
+            return cell
         case .secondSection:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SecondSectionCell.identifier, for: indexPath) as? SecondSectionCell
-            cell?.configure(album: photosSection.photoAlbom[indexPath.item])
-            return cell ?? UICollectionViewCell()
+            guard let cell = cell else { return UICollectionViewCell()}
+            let albumModel = photosSection.photoAlbom[indexPath.item]
+            cell.configureAlbumTitle(albumModel.title)
+            cell.configureImage(albumModel.image)
+            return cell
         case .thirdAndFourthSectionCell:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ThirdAndFourthSectionCell.identifier, for: indexPath) as? ThirdAndFourthSectionCell
-            cell?.configure(album: photosSection.photoAlbom[indexPath.item])
-            cell?.numberTitle.text = String(Int.random(in: 80...120))
+            guard let cell = cell else { return UICollectionViewCell()}
+            let albumModel = photosSection.photoAlbom[indexPath.item]
+            cell.configureIcon(albumModel.image)
+            cell.configureTitle(albumModel.title)
+            cell.numberTitle.text = String(Int.random(in: 80...120))
             if (indexPath.section == 2 && indexPath.item == 6) || (indexPath.section == 3 && indexPath.item == 2) {
-                cell?.bottomView.backgroundColor = UIColor.clear
+                cell.bottomView.backgroundColor = UIColor.clear
             } else {
-                cell?.bottomView.backgroundColor = UIColor.systemGray5
+                cell.bottomView.backgroundColor = UIColor.systemGray5
             }
-            return cell ?? UICollectionViewCell()
+            return cell
         }
     }
 
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: AlbumHeaderReusableView.identifier, for: indexPath) as? AlbumHeaderReusableView
-        header?.configure(header: model?[indexPath.section].header)
-        return header ?? AlbumHeaderReusableView()
+        guard let header = header else { return UICollectionReusableView()}
+        let headerModel = model?[indexPath.section].header
+        header.configureTitle(headerModel?.title)
+        header.configureSubtitleButton(headerModel?.subtitle)
+        return header 
     }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         collectionView.deselectItem(at: indexPath, animated: true)
-       // print("Нажата ячейка - \(PhotoAlbum.albums[indexPath.section][indexPath.item].title)")
+        print("Нажата ячейка - \(model?[indexPath.section].photoAlbom[indexPath.item].title ?? "")")
     }
 }

@@ -15,7 +15,6 @@ class AlbumsView: UIView {
         let collection = UICollectionView(frame: .zero, collectionViewLayout: createLayout())
         collection.register(AlbumHeaderReusableView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
                             withReuseIdentifier: AlbumHeaderReusableView.identifier)
-        collection.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "cell")
         collection.register(FirstSectionCell.self, forCellWithReuseIdentifier: FirstSectionCell.identifier)
         collection.register(SecondSectionCell.self, forCellWithReuseIdentifier: SecondSectionCell.identifier)
         collection.register(ThirdAndFourthSectionCell.self, forCellWithReuseIdentifier: ThirdAndFourthSectionCell.identifier)
@@ -132,7 +131,7 @@ class AlbumsView: UIView {
                 )
                 layoutSection.boundarySupplementaryItems = [layoutSectionHeader]
                 return layoutSection
-            case 2, 3:
+            default:
                 let itemSize = NSCollectionLayoutSize(
                     widthDimension: .fractionalWidth(1),
                     heightDimension: .fractionalHeight(1)
@@ -167,34 +166,6 @@ class AlbumsView: UIView {
                     alignment: .top
                 )
                 layoutSection.boundarySupplementaryItems = [layoutSectionHeader]
-                return layoutSection
-            default:
-                let itemSize = NSCollectionLayoutSize(
-                    widthDimension: .fractionalWidth(1),
-                    heightDimension: .fractionalHeight(1)
-                )
-
-                let layoutItem = NSCollectionLayoutItem(layoutSize: itemSize)
-                layoutItem.contentInsets = NSDirectionalEdgeInsets(top: 0,
-                                                                   leading: 5,
-                                                                   bottom: 0,
-                                                                   trailing: 5)
-
-                let groupSize = NSCollectionLayoutSize(
-                    widthDimension: .fractionalWidth(1),
-                    heightDimension: .estimated(300)
-                )
-                let layoutGroup = NSCollectionLayoutGroup.horizontal(
-                    layoutSize: groupSize,
-                    subitems: [layoutItem]
-                )
-
-                let layoutSection = NSCollectionLayoutSection(group: layoutGroup)
-                layoutSection.orthogonalScrollingBehavior = .groupPagingCentered
-                layoutSection.contentInsets = NSDirectionalEdgeInsets(top: 0,
-                                                                      leading: 0,
-                                                                      bottom: 20,
-                                                                      trailing: 0)
                 return layoutSection
             }
         }
