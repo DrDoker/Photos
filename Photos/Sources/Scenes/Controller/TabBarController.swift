@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  TabBarController.swift
 //  Photos
 //
 //  Created by Serhii  on 09/10/2022.
@@ -7,13 +7,12 @@
 
 import UIKit
 
-class MainViewController: UIViewController {
+class TabBarController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        view = MainView()
+
+
     }
-
+    
 }
-

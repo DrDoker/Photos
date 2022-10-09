@@ -7,7 +7,7 @@
 
 import UIKit
 
-class MainView: UIView {
+class AlbumsView: UIView {
 
     // MARK: - Outlets
 
