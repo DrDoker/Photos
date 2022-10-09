@@ -16,6 +16,19 @@ class AlbumsController: UIViewController {
         
         view = AlbumsView()
         model = PhotoAlbum.albums
+        setupNavigationBar()
+    }
+
+    private func setupNavigationBar() {
+        navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add,
+                                                           target: self,
+                                                           action: #selector(addPhotoAlbum))
+    }
+
+    // MARK: - Actions
+
+    @objc func addPhotoAlbum() {
+        print("Add")
     }
 }
 
