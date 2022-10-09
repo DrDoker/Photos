@@ -10,7 +10,11 @@ import UIKit
 class SearchView: UIView {
     // MARK: - Outlets
     
-    
+    lazy var search: UISearchController = {
+        let search = UISearchController()
+        search.searchBar.placeholder = "Search"
+        return search
+    }()
     
     //MARK: - Initializers
     
