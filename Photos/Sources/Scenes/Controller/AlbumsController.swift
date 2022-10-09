@@ -9,11 +9,13 @@ import UIKit
 
 class AlbumsController: UIViewController {
 
+    private var model: [[PhotoAlbum]]?
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
         view = AlbumsView()
+        model = PhotoAlbum.albums
     }
-
 }
 

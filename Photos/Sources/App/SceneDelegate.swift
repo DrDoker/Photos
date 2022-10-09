@@ -14,8 +14,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let windowsScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: windowsScene)
-        let viewController = AlbumsController()
-        window?.rootViewController = viewController
+        let tabBar = TabBarController()
+        window?.rootViewController = tabBar
         window?.makeKeyAndVisible()
     }
 }
