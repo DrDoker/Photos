@@ -10,6 +10,7 @@ import UIKit
 class AlbumsView: UIView {
 
     // MARK: - Outlets
+    
 
 
     //MARK: - Initializers
@@ -25,11 +26,12 @@ class AlbumsView: UIView {
     }
 
     private func commonInit() {
-        backgroundColor = .red
+        backgroundColor = .systemBackground
 
         setupHierarchy()
         setupLayout()
     }
+
 
     // MARK: - Setup
 
