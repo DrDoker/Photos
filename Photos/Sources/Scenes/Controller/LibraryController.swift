@@ -8,10 +8,10 @@
 import UIKit
 
 class LibraryController: UIViewController {
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         view = LibraryView()
     }
 }

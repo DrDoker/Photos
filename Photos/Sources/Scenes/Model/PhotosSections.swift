@@ -8,9 +8,9 @@
 import Foundation
 
 enum SectionType {
-    case firstSection
-    case secondSection
-    case thirdAndFourthSectionCell
+    case myAlbomsSection
+    case sharedAlbomsSection
+    case tableSection
 }
 
 struct PhotosSections {
@@ -21,8 +21,8 @@ struct PhotosSections {
 
 extension PhotosSections {
     static var albumSections = [
-        // First section
-        PhotosSections(type: .firstSection,
+        // My Alboms
+        PhotosSections(type: .myAlbomsSection,
                        header: Header(title: "Мои альбомы", subtitle: "Все"),
                        photoAlbom: [PhotoAlbum(title: "Недавние", image: "roka"),
                                     PhotoAlbum(title: "Избранное", image: "bmw"),
@@ -31,18 +31,18 @@ extension PhotosSections {
                                     PhotoAlbum(title: "Lightroom", image: "we"),
                                     PhotoAlbum(title: "RAW", image: "raw"),
                                     PhotoAlbum(title: "InShot", image: "warszawa")]),
-
-        // Second section
-        PhotosSections(type: .secondSection,
+        
+        // Shared Alboms
+        PhotosSections(type: .sharedAlbomsSection,
                        header: Header(title: "Общие альбомы", subtitle: "Все"),
                        photoAlbom: [PhotoAlbum(title: "Krawow", image: "krakow"),
                                     PhotoAlbum(title: "Montenegro", image: "montenegro"),
                                     PhotoAlbum(title: "New Year", image: "ny"),
                                     PhotoAlbum(title: "Berlin", image: "berlin"),
                                     PhotoAlbum(title: "День Рождения", image: "happy")]),
-
-        // Third section
-        PhotosSections(type: .thirdAndFourthSectionCell,
+        
+        // Media Types
+        PhotosSections(type: .tableSection,
                        header:  Header(title: "Типы медиафайлов", subtitle: nil),
                        photoAlbom: [PhotoAlbum(title: "Видео", image: "video"),
                                     PhotoAlbum(title: "Селфи", image: "person.crop.square"),
@@ -51,9 +51,9 @@ extension PhotosSections {
                                     PhotoAlbum(title: "Панорамы", image: "pano"),
                                     PhotoAlbum(title: "Таймлапс", image: "timelapse"),
                                     PhotoAlbum(title: "Серии", image: "square.3.layers.3d.down.right")]),
-
-        // Fourth section
-        PhotosSections(type: .thirdAndFourthSectionCell,
+        
+        // Utilites
+        PhotosSections(type: .tableSection,
                        header: Header(title: "Другое", subtitle: nil),
                        photoAlbom: [PhotoAlbum(title: "Импортированные", image: "square.and.arrow.down"),
                                     PhotoAlbum(title: "Скрытые", image: "eye.slash"),
