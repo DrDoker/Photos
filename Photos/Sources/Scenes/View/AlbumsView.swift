@@ -8,45 +8,45 @@
 import UIKit
 
 class AlbumsView: UIView {
-
+    
     // MARK: - Outlets
     
     lazy var photoCollection: UICollectionView = {
         let collection = UICollectionView(frame: .zero, collectionViewLayout: createLayout())
         collection.register(AlbumHeaderReusableView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
                             withReuseIdentifier: AlbumHeaderReusableView.identifier)
-        collection.register(FirstSectionCell.self, forCellWithReuseIdentifier: FirstSectionCell.identifier)
-        collection.register(SecondSectionCell.self, forCellWithReuseIdentifier: SecondSectionCell.identifier)
-        collection.register(ThirdAndFourthSectionCell.self, forCellWithReuseIdentifier: ThirdAndFourthSectionCell.identifier)
+        collection.register(MyAlbomsSectionCell.self, forCellWithReuseIdentifier: MyAlbomsSectionCell.identifier)
+        collection.register(SharedAlbomsSectionCell.self, forCellWithReuseIdentifier: SharedAlbomsSectionCell.identifier)
+        collection.register(TableSectionCell.self, forCellWithReuseIdentifier: TableSectionCell.identifier)
         return collection
     }()
-
+    
     //MARK: - Initializers
-
+    
     init() {
         super.init(frame: .zero)
         commonInit()
     }
-
+    
     required init?(coder: NSCoder) {
         super.init(coder: coder)
         commonInit()
     }
-
+    
     private func commonInit() {
         backgroundColor = .systemBackground
-
+        
         setupHierarchy()
         setupLayout()
     }
-
-
+    
+    
     // MARK: - Setup
-
+    
     private func setupHierarchy() {
         addSubview(photoCollection)
     }
-
+    
     private func setupLayout() {
         photoCollection.snp.makeConstraints { make in
             make.top.equalTo(self.safeAreaLayoutGuide)
@@ -54,7 +54,7 @@ class AlbumsView: UIView {
             make.bottom.equalTo(self)
         }
     }
-
+    
     private func createLayout() -> UICollectionViewCompositionalLayout {
         return UICollectionViewCompositionalLayout { (section, _) -> NSCollectionLayoutSection in
             switch section {
@@ -62,21 +62,21 @@ class AlbumsView: UIView {
                 let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),
                                                       heightDimension: .fractionalHeight(1/2.5)
                 )
-
+                
                 let layoutItem = NSCollectionLayoutItem(layoutSize: itemSize)
                 layoutItem.contentInsets = NSDirectionalEdgeInsets(top: 5,
                                                                    leading: 5,
                                                                    bottom: 5,
                                                                    trailing: 5)
-
+                
                 let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1/2.15),
                                                        heightDimension: .absolute(500)
                 )
-
+                
                 let layoutGroup = NSCollectionLayoutGroup.vertical(layoutSize: groupSize,
                                                                    subitem: layoutItem, count: 2
                 )
-
+                
                 let layoutSection = NSCollectionLayoutSection(group: layoutGroup)
                 layoutSection.orthogonalScrollingBehavior = .groupPaging
                 layoutSection.contentInsets = NSDirectionalEdgeInsets(top: 5,
@@ -104,7 +104,7 @@ class AlbumsView: UIView {
                                                                    leading: 5,
                                                                    bottom: 5,
                                                                    trailing: 5)
-
+                
                 let groupSize = NSCollectionLayoutSize(
                     widthDimension: .fractionalWidth(1/2.15),
                     heightDimension: .absolute(250)
@@ -113,7 +113,7 @@ class AlbumsView: UIView {
                     layoutSize: groupSize,
                     subitems: [layoutItem]
                 )
-
+                
                 let layoutSection = NSCollectionLayoutSection(group: layoutGroup)
                 layoutSection.orthogonalScrollingBehavior = .groupPaging
                 layoutSection.contentInsets = NSDirectionalEdgeInsets(top: 5,
@@ -141,7 +141,7 @@ class AlbumsView: UIView {
                                                                    leading: 5,
                                                                    bottom: 0,
                                                                    trailing: 0)
-
+                
                 let groupSize = NSCollectionLayoutSize(
                     widthDimension: .fractionalWidth(1),
                     heightDimension: .absolute(43)
@@ -150,7 +150,7 @@ class AlbumsView: UIView {
                     layoutSize: groupSize,
                     subitems: [layoutItem]
                 )
-
+                
                 let layoutSection = NSCollectionLayoutSection(group: layoutGroup)
                 layoutSection.contentInsets = NSDirectionalEdgeInsets(top: 10,
                                                                       leading: 10,
@@ -170,5 +170,5 @@ class AlbumsView: UIView {
             }
         }
     }
-
+    
 }
