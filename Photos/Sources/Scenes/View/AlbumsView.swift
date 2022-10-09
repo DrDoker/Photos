@@ -15,9 +15,9 @@ class AlbumsView: UIView {
         let collection = UICollectionView(frame: .zero, collectionViewLayout: createLayout())
         collection.register(AlbumHeaderReusableView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
                             withReuseIdentifier: AlbumHeaderReusableView.identifier)
-        collection.register(FirstSectionCell.self, forCellWithReuseIdentifier: FirstSectionCell.identifier)
-        collection.register(SecondSectionCell.self, forCellWithReuseIdentifier: SecondSectionCell.identifier)
-        collection.register(ThirdAndFourthSectionCell.self, forCellWithReuseIdentifier: ThirdAndFourthSectionCell.identifier)
+        collection.register(MyAlbomsSectionCell.self, forCellWithReuseIdentifier: MyAlbomsSectionCell.identifier)
+        collection.register(SharedAlbomsSectionCell.self, forCellWithReuseIdentifier: SharedAlbomsSectionCell.identifier)
+        collection.register(TableSectionCell.self, forCellWithReuseIdentifier: TableSectionCell.identifier)
         return collection
     }()
     

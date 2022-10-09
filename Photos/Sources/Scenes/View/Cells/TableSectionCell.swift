@@ -1,5 +1,5 @@
 //
-//  ThirdAndFourthSectionCell.swift
+//  TableSectionCell.swift
 //  Photos
 //
 //  Created by Serhii  on 09/10/2022.
@@ -7,9 +7,9 @@
 
 import UIKit
 
-class ThirdAndFourthSectionCell: UICollectionViewCell {
+class TableSectionCell: UICollectionViewCell {
     
-    static let identifier = "ThirdAndFourthSectionCell"
+    static let identifier = "TableSectionCell"
     
     // MARK: - Outlets
     

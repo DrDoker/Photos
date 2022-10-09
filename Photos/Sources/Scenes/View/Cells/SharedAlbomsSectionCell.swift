@@ -1,16 +1,15 @@
 //
-//  FirstSectionCell.swift
+//  SecondSectionCell.swift
 //  Photos
 //
 //  Created by Serhii  on 09/10/2022.
 //
 
 import UIKit
-import SnapKit
 
-class FirstSectionCell: UICollectionViewCell {
+class SharedAlbomsSectionCell: UICollectionViewCell {
     
-    static let identifier = "FirstSectionCell"
+    static let identifier = "SharedAlbomsSectionCell"
     
     // MARK: - Outlets
     
@@ -28,10 +27,11 @@ class FirstSectionCell: UICollectionViewCell {
         return albumTitle
     }()
     
-    lazy var numberTitle: UILabel = {
-        let numberTitle = UILabel()
-        numberTitle.textColor = .gray
-        return numberTitle
+    private lazy var fromWho: UILabel = {
+        let fromWho = UILabel()
+        fromWho.text = "От Вас"
+        fromWho.textColor = .gray
+        return fromWho
     }()
     
     private lazy var albumInfoStack: UIStackView = {
@@ -61,7 +61,7 @@ class FirstSectionCell: UICollectionViewCell {
     func setupHierarchy() {
         contentView.addSubview(imageView)
         albumInfoStack.addArrangedSubview(albumTitle)
-        albumInfoStack.addArrangedSubview(numberTitle)
+        albumInfoStack.addArrangedSubview(fromWho)
         contentView.addSubview(albumInfoStack)
     }
     
@@ -89,7 +89,6 @@ class FirstSectionCell: UICollectionViewCell {
     override func prepareForReuse() {
         super.prepareForReuse()
         albumTitle.text = nil
-        numberTitle.text = nil
         imageView.image = nil
     }
 }

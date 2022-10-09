@@ -22,21 +22,28 @@ class AlbumsController: UIViewController {
         view = AlbumsView()
         model = PhotosSections.albumSections
         setupNavigationBar()
-        
-        albumsView?.photoCollection.dataSource = self
-        albumsView?.photoCollection.delegate = self
+        setupCollection()
     }
+
+    // MARK: - Actions
     
+    @objc func addPhotoAlbum() {
+        print("Add")
+    }
+}
+
+extension AlbumsController {
     private func setupNavigationBar() {
         navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add,
                                                            target: self,
                                                            action: #selector(addPhotoAlbum))
     }
-    
-    // MARK: - Actions
-    
-    @objc func addPhotoAlbum() {
-        print("Add")
+}
+
+extension AlbumsController {
+    private func setupCollection() {
+        albumsView?.photoCollection.dataSource = self
+        albumsView?.photoCollection.delegate = self
     }
 }
 
@@ -55,7 +62,7 @@ extension AlbumsController: UICollectionViewDataSource, UICollectionViewDelegate
         
         switch photosSection.type {
         case .myAlbomsSection:
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FirstSectionCell.identifier, for: indexPath) as? FirstSectionCell
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MyAlbomsSectionCell.identifier, for: indexPath) as? MyAlbomsSectionCell
             guard let cell = cell else { return UICollectionViewCell()}
             let albumModel = photosSection.photoAlbom[indexPath.item]
             cell.configureAlbumTitle(albumModel.title)
@@ -63,14 +70,14 @@ extension AlbumsController: UICollectionViewDataSource, UICollectionViewDelegate
             cell.numberTitle.text = String(Int.random(in: 25...90))
             return cell
         case .sharedAlbomsSection:
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SecondSectionCell.identifier, for: indexPath) as? SecondSectionCell
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SharedAlbomsSectionCell.identifier, for: indexPath) as? SharedAlbomsSectionCell
             guard let cell = cell else { return UICollectionViewCell()}
             let albumModel = photosSection.photoAlbom[indexPath.item]
             cell.configureAlbumTitle(albumModel.title)
             cell.configureImage(albumModel.image)
             return cell
         case .tableSection:
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ThirdAndFourthSectionCell.identifier, for: indexPath) as? ThirdAndFourthSectionCell
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TableSectionCell.identifier, for: indexPath) as? TableSectionCell
             guard let cell = cell else { return UICollectionViewCell()}
             let albumModel = photosSection.photoAlbom[indexPath.item]
             cell.configureIcon(albumModel.image)
