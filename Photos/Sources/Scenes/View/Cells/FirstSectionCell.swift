@@ -78,9 +78,12 @@ class FirstSectionCell: UICollectionViewCell {
 
     // MARK: - Configuration
 
-    func configure(album: PhotoAlbum?) {
-        self.albumTitle.text = album?.title
-        self.imageView.image = UIImage(named: album?.image ?? "")
+    func configureAlbumTitle(_ title: String?) {
+        self.albumTitle.text = title
+    }
+
+    func configureImage(_ imageName: String?) {
+        self.imageView.image = UIImage(named: imageName ?? "")
     }
 
     override func prepareForReuse() {
